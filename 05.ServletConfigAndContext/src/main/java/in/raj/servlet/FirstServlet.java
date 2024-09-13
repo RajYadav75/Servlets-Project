@@ -1,6 +1,7 @@
 package in.raj.servlet;
 
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +15,10 @@ public class FirstServlet extends HttpServlet {
         ServletConfig con = getServletConfig();
         String msg = con.getInitParameter("msg");
 
+        ServletContext context = req.getServletContext();
+        String website = context.getInitParameter("website");
+
         PrintWriter writer = resp.getWriter();
-        writer.append("First Servlet"+msg);
+        writer.append("First Servlet"+msg +" ---  "+website);
     }
 }

@@ -1,6 +1,7 @@
 package in.raj.servlet;
 
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +14,11 @@ public class SecondServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletConfig con = getServletConfig();
         String msg = con.getInitParameter("msg");
-        PrintWriter pw = resp.getWriter();
-        pw.append("Second Servlet"+msg);
+
+        ServletContext context = req.getServletContext();
+        String website = context.getInitParameter("website");
+
+        PrintWriter writer = resp.getWriter();
+        writer.append("First Servlet" + msg + " ---  " + website);
     }
 }
